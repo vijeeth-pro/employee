@@ -10,11 +10,13 @@ def init_db():
     if engine.dialect.name == "postgresql":
         try:
             with engine.connect() as conn:
-                conn.execute(text("DROP SCHEMA public CASCADE;"))
-                conn.execute(text("CREATE SCHEMA public;"))
+                # Drop all tables in public schema with CASCADE (no schema ownership required)
+                conn.execute(text("DO $$ DECLARE r RECORD; BEGIN FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public') LOOP EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.tablename) || ' CASCADE'; END LOOP; END $$;"))
+                # Drop all custom ENUM types in public schema with CASCADE
+                conn.execute(text("DO $$ DECLARE r RECORD; BEGIN FOR r IN (SELECT typname FROM pg_type t JOIN pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typtype = 'e') LOOP EXECUTE 'DROP TYPE IF EXISTS ' || quote_ident(r.typname) || ' CASCADE'; END LOOP; END $$;"))
                 conn.commit()
         except Exception as e:
-            print("Notice during PostgreSQL schema reset:", e)
+            print("Notice during PostgreSQL table reset:", e)
             Base.metadata.drop_all(bind=engine)
     else:
         Base.metadata.drop_all(bind=engine)
