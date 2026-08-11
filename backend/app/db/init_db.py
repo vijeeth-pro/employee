@@ -1,3 +1,4 @@
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 from app.core.database import engine, SessionLocal
 from app.db.base import Base
@@ -6,7 +7,18 @@ from app.core.security import get_password_hash
 
 def init_db():
     print("Dropping and recreating database tables...")
-    Base.metadata.drop_all(bind=engine)
+    if engine.dialect.name == "postgresql":
+        try:
+            with engine.connect() as conn:
+                conn.execute(text("DROP SCHEMA public CASCADE;"))
+                conn.execute(text("CREATE SCHEMA public;"))
+                conn.commit()
+        except Exception as e:
+            print("Notice during PostgreSQL schema reset:", e)
+            Base.metadata.drop_all(bind=engine)
+    else:
+        Base.metadata.drop_all(bind=engine)
+
     Base.metadata.create_all(bind=engine)
     
     db: Session = SessionLocal()
