@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+}
+
+/* Light Theme Sidebar Styling */
+.light-sider {
+  background: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+.light-sider .ant-menu-light {
+  background: transparent !important;
+  border-inline-end: none !important;
+}
+
+.light-sider .ant-menu-light .ant-menu-item {
+  border-radius: 8px !important;
+  margin: 4px 10px !important;
+  width: calc(100% - 20px) !important;
+  color: #334155 !important;
+  font-weight: 500 !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.light-sider .ant-menu-light .ant-menu-item-selected {
+  background: linear-gradient(90deg, #e6f4ff 0%, #bae0ff 100%) !important;
+  color: #0958d9 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(22, 119, 255, 0.15) !important;
+}
+
+.light-sider .ant-menu-light .ant-menu-item:hover:not(.ant-menu-item-selected) {
+  background: #f1f5f9 !important;
+  color: #1677ff !important;
+}
+
+/* Dark Theme Sidebar Styling */
+.dark-sider {
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark-sider .ant-menu-dark {
+  background: transparent !important;
+}
+
+.dark-sider .ant-menu-dark .ant-menu-item {
+  border-radius: 8px !important;
+  margin: 4px 10px !important;
+  width: calc(100% - 20px) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.dark-sider .ant-menu-dark .ant-menu-item-selected {
+  background: linear-gradient(90deg, #1677ff 0%, #0958d9 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(22, 119, 255, 0.35) !important;
+}
+
+.dark-sider .ant-menu-dark .ant-menu-item:hover:not(.ant-menu-item-selected) {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Stat Cards Hover Effect */
+.stat-card-gradient {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer;
+}
+
+.stat-card-gradient:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Table Enhancements */
+.ant-table-wrapper .ant-table {
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+.ant-table-wrapper .ant-table-thead > tr > th {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.ant-table-wrapper .ant-table-tbody > tr:hover > td {
+  background-color: #f8fafc !important;
+}
+
+/* Modern Card Styling */
+.ant-card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #e2e8f0 !important;
+}
