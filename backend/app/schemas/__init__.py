@@ -3,7 +3,6 @@ from app.schemas.company import CompanyBase, CompanyCreate, CompanyUpdate, Compa
 from app.schemas.vendor import VendorCompanyBase, VendorCompanyCreate, VendorCompanyUpdate, VendorCompanyOut
 from app.schemas.user import UserBase, UserCreate, UserUpdate, UserOut
 from app.schemas.policy import CompanyPolicyBase, CompanyPolicyCreate, CompanyPolicyOut
-from app.schemas.ai import AIChatRequest, AISourceDocument, AIChatResponse
 from app.schemas.analytics import DashboardStats
 
 __all__ = [
@@ -25,8 +24,5 @@ __all__ = [
     "CompanyPolicyBase",
     "CompanyPolicyCreate",
     "CompanyPolicyOut",
-    "AIChatRequest",
-    "AISourceDocument",
-    "AIChatResponse",
     "DashboardStats",
 ]

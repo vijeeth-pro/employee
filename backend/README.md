@@ -1,6 +1,6 @@
 # Employee & Vendor Management Backend API
 
-FastAPI REST API backend with PostgreSQL database, SQLAlchemy ORM, JWT authentication, 5-tier role-based access control (RBAC), Google Gemini RAG Engine integration, and automated initial database seeding.
+FastAPI REST API backend with PostgreSQL database, SQLAlchemy ORM, JWT authentication, 5-tier role-based access control (RBAC), and automated initial database seeding.
 
 ---
 
@@ -22,7 +22,6 @@ All dependencies are defined in `requirements.txt`:
 | `email-validator` | `>=2.1.1` | Email format validation |
 | `python-dotenv` | `>=1.0.1` | `.env` configuration file loader |
 | `requests` | `>=2.31.0` | HTTP client for automated testing |
-| `google-generativeai`| `>=0.5.0` | Google Gemini LLM API client for RAG synthesis |
 
 ---
 
@@ -60,7 +59,6 @@ POSTGRES=postgresql://vijeethsankar@localhost:5432/test_db
 SECRET_KEY=super_secret_jwt_key_employee_management_2026_antigravity
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=10080
-GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
 ### 5. Initialize & Seed Database

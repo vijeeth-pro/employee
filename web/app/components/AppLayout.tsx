@@ -17,7 +17,6 @@ import {
 import { useNavigate, useLocation, Link } from "react-router";
 import { useAuthStore } from "../store/useAuthStore";
 import { useAppStore } from "../store/useAppStore";
-import { AiAssistant } from "./AiAssistant";
 
 const { Header, Sider, Content, Footer } = Layout;
 
@@ -283,9 +282,6 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
           Workforce Management System ©2026 Enterprise Solution w/ Ant Design & FastAPI
         </Footer>
       </Layout>
-
-      {/* Floating Role-Aware AI Assistant Drawer */}
-      <AiAssistant />
     </Layout>
   );
 };

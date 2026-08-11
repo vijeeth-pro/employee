@@ -9,7 +9,6 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7 # 7 days
     
     POSTGRES: str = os.getenv("POSTGRES", "postgresql://vijeethsankar@localhost:5432/test_db")
-    GEMINI_API_KEY: str = ""
 
     class Config:
         case_sensitive = True
