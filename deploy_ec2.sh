@@ -35,6 +35,11 @@ fi
 pip install --upgrade pip
 pip install -r requirements.txt
 
+if [ ! -f ".env" ]; then
+    echo "⚠️  backend/.env not found, copying from .env.example..."
+    cp .env.example .env
+fi
+
 echo "🔄 Seeding / Initializing DB schema..."
 python -m app.db.init_db || true
 
@@ -42,7 +47,9 @@ echo "🔁 Restarting FastAPI Backend Service..."
 if systemctl is-active --quiet employee-backend; then
     sudo systemctl restart employee-backend
 elif command -v pm2 &> /dev/null; then
-    pm2 restart employee-backend || pm2 start "uvicorn main:app --host 127.0.0.1 --port 8000 --workers 4" --name "employee-backend"
+    pm2 delete employee-backend 2>/dev/null || true
+    pm2 start .venv/bin/python --name "employee-backend" -- -m uvicorn main:app --host 127.0.0.1 --port 8000 --workers 2
+    pm2 save 2>/dev/null || true
 else
     echo "⚠️  No systemd service or PM2 detected. Please ensure your backend process manager is running."
 fi
