@@ -13,7 +13,7 @@ interface SEOHeadProps {
 const DEFAULT_TITLE = "Workforce OS - Enterprise Employee, Vendor & Policy Management System";
 const DEFAULT_DESCRIPTION = "Workforce OS is an all-in-one enterprise platform for employee directory management, vendor contractor tracking, role-scoped policies, and Gemini AI RAG assistant.";
 const DEFAULT_KEYWORDS = "workforce management, employee directory, vendor portal, contractor tracking, company policy RAG, enterprise HR OS, Gemini AI assistant";
-const DOMAIN = "https://vijeeth.zapto.org/domain";
+const DOMAIN = "https://vijeeth.zapto.org";
 
 export const SEOHead: React.FC<SEOHeadProps> = ({
   title,

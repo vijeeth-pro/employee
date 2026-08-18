@@ -25,7 +25,7 @@ export const links: Route.LinksFunction = () => [
   },
   { rel: "manifest", href: "/site.webmanifest" },
   { rel: "shortcut icon", href: "/favicon.ico" },
-  { rel: "canonical", href: "https://vijeeth.zapto.org/domain" }
+  { rel: "canonical", href: "https://vijeeth.zapto.org" }
 ];
 
 export const meta: Route.MetaFunction = () => [
@@ -40,8 +40,8 @@ export const meta: Route.MetaFunction = () => [
   { property: "og:title", content: "Workforce OS - Enterprise Employee, Vendor & Policy Management System" },
   { property: "og:description", content: "All-in-one enterprise platform for employee directory management, vendor contractor tracking, role-scoped policies, and Gemini AI RAG assistant." },
   { property: "og:type", content: "website" },
-  { property: "og:url", content: "https://vijeeth.zapto.org/domain" },
-  { property: "og:image", content: "https://vijeeth.zapto.org/domain/favicon.ico" },
+  { property: "og:url", content: "https://vijeeth.zapto.org" },
+  { property: "og:image", content: "https://vijeeth.zapto.org/favicon.ico" },
   { property: "og:site_name", content: "Workforce OS Enterprise Platform" },
   { name: "twitter:card", content: "summary_large_image" },
   { name: "twitter:title", content: "Workforce OS - Enterprise Employee, Vendor & Policy Management System" },
@@ -55,7 +55,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     "name": "Workforce OS",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
-    "url": "https://vijeeth.zapto.org/domain",
+    "url": "https://vijeeth.zapto.org",
     "description": "Enterprise Employee, Vendor & Policy Management Platform with AI RAG Vector Assistant.",
     "offers": {
       "@type": "Offer",

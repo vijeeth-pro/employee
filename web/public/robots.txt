@@ -9,4 +9,4 @@ Disallow: /api/
 Disallow: /uploads/
 
 # Sitemap location
-Sitemap: https://vijeeth.zapto.org/domain/sitemap.xml
+Sitemap: https://vijeeth.zapto.org/sitemap.xml
