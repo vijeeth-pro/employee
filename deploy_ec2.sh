@@ -47,12 +47,18 @@ else
     echo "⚠️  No systemd service or PM2 detected. Please ensure your backend process manager is running."
 fi
 
-# 3. Clean & Build Frontend Assets
-echo "🧹 Removing previous web builds..."
+# 3. Clean Disk Caches & Build Frontend Assets
+echo "🧹 Cleaning previous web builds & package manager caches..."
 cd ../web
 rm -rf build node_modules/.vite
+if command -v bun &> /dev/null; then
+    bun pm cache rm || true
+else
+    npm cache clean --force || true
+fi
 
 echo "⚡ Building Fresh Frontend Assets..."
+export NODE_OPTIONS="--max-old-space-size=1024"
 if command -v bun &> /dev/null; then
     bun install
     bun run build
