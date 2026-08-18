@@ -42,7 +42,7 @@ echo "🔁 Restarting FastAPI Backend Service..."
 if systemctl is-active --quiet employee-backend; then
     sudo systemctl restart employee-backend
 elif command -v pm2 &> /dev/null; then
-    pm2 restart employee-backend || pm2 start .venv/bin/uvicorn --name "employee-backend" -- main:app --host 127.0.0.1 --port 8000 --workers 2
+    pm2 restart employee-backend || pm2 start "uvicorn main:app --host 127.0.0.1 --port 8000 --workers 4" --name "employee-backend"
 else
     echo "⚠️  No systemd service or PM2 detected. Please ensure your backend process manager is running."
 fi
@@ -53,7 +53,6 @@ cd ../web
 rm -rf build node_modules/.vite
 
 echo "⚡ Building Fresh Frontend Assets..."
-export NODE_OPTIONS="--max-old-space-size=1024"
 if command -v bun &> /dev/null; then
     bun install
     bun run build
@@ -77,4 +76,4 @@ if command -v nginx &> /dev/null; then
 fi
 
 echo "✅ REDEPLOYMENT COMPLETED SUCCESSFULLY!"
-echo "Website is live at: https://vijeeth.zapto.org/domain"
+echo "Website is live at: https://vijeeth.zapto.org"
