@@ -3,6 +3,7 @@ import { Table, Button, Input, Modal, Form, Tag, Space, Typography, Card, messag
 import { PlusOutlined, SearchOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { api } from "../services/api";
 import { useAuthStore } from "../store/useAuthStore";
+import { SEOHead } from "../components/SEOHead";
 
 const { Title } = Typography;
 
@@ -162,11 +163,16 @@ export default function Companies() {
   ];
 
   return (
-    <>
-      <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+    <main id="main-content">
+      <SEOHead
+        title="Client Companies Directory"
+        description="Manage client company organizations, registration profiles, industry sectors, and active statuses in Workforce OS."
+        canonicalPath="/companies"
+      />
+      <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
         <div>
-          <Title level={3} style={{ margin: 0 }}>Company Organizations</Title>
-          <span>Maintain client & enterprise company registrations</span>
+          <h1>Company Organizations</h1>
+          <span style={{ color: "#64748b", fontSize: 13 }}>Maintain client & enterprise company registrations</span>
         </div>
 
         {user?.role === "admin" && (
@@ -177,7 +183,7 @@ export default function Companies() {
       </div>
 
       <Card style={{ borderRadius: 12 }}>
-        <div style={{ marginBottom: 16, maxWidth: 320 }}>
+        <div style={{ marginBottom: 16, maxWidth: 320, width: "100%" }}>
           <Input
             placeholder="Search company by name, code..."
             prefix={<SearchOutlined />}
@@ -193,6 +199,7 @@ export default function Companies() {
           rowKey="id"
           loading={loading}
           pagination={{ pageSize: 8 }}
+          scroll={{ x: 750 }}
         />
       </Card>
 
@@ -238,6 +245,6 @@ export default function Companies() {
           </Form.Item>
         </Form>
       </Modal>
-    </>
+    </main>
   );
 }

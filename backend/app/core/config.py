@@ -1,17 +1,27 @@
 import os
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Employee & Vendor Management API"
     API_V1_STR: str = "/api/v1"
-    SECRET_KEY: str = "super_secret_jwt_key_employee_management_2026_antigravity"
+    
+    # Security Secrets (Strictly loaded from .env)
+    SECRET_KEY: str
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7 # 7 days
     
-    POSTGRES: str = "postgresql://vijeethsankar:postgres@localhost:5432/test_db"
+    # Database Connection (Strictly loaded from .env)
+    POSTGRES: str
+    
+    # RAG System Configuration (Gemini & Pinecone - Loaded from .env)
+    GEMINI_API_KEY: str = ""
+    PINECONE_API_KEY: str = ""
+    PINECONE_INDEX_NAME: str = "workforce-policy-index"
 
-    class Config:
-        case_sensitive = True
-        env_file = ".env"
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore"
+    )
 
 settings = Settings()

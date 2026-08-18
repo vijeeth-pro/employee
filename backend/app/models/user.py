@@ -21,6 +21,14 @@ class User(Base):
     department = Column(String(100), nullable=True)
     status = Column(String(20), default="active") # active, inactive
     
+    # Employee Live Leave Ledger Metrics
+    annual_leave_quota = Column(Integer, default=20)
+    sick_leave_quota = Column(Integer, default=10)
+    annual_leave_taken = Column(Integer, default=3)
+    sick_leave_taken = Column(Integer, default=1)
+    last_leave_date = Column(String(50), nullable=True, default="2026-08-14")
+    last_leave_type = Column(String(50), nullable=True, default="Privilege Leave")
+
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 

@@ -3,6 +3,7 @@ import { Table, Button, Input, Modal, Form, Select, Tag, Space, Typography, Card
 import { PlusOutlined, SearchOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { api } from "../services/api";
 import { useAuthStore } from "../store/useAuthStore";
+import { SEOHead } from "../components/SEOHead";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -166,11 +167,16 @@ export default function Employees() {
   ];
 
   return (
-    <>
-      <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+    <main id="main-content">
+      <SEOHead
+        title="Company Employees Directory"
+        description="Manage company staff members, designations, departments, contact details, and leave quotas in Workforce OS."
+        canonicalPath="/employees"
+      />
+      <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
         <div>
-          <Title level={3} style={{ margin: 0 }}>Company Employees</Title>
-          <span>Manage internal organization workforce and employee details</span>
+          <h1>Company Employees</h1>
+          <span style={{ color: "#64748b", fontSize: 13 }}>Manage internal organization workforce and employee details</span>
         </div>
 
         {(user?.role === "admin" || user?.role === "company") && (
@@ -181,7 +187,7 @@ export default function Employees() {
       </div>
 
       <Card style={{ borderRadius: 12 }}>
-        <div style={{ marginBottom: 16, maxWidth: 320 }}>
+        <div style={{ marginBottom: 16, maxWidth: 320, width: "100%" }}>
           <Input
             placeholder="Search by name, email, dept..."
             prefix={<SearchOutlined />}
@@ -197,6 +203,7 @@ export default function Employees() {
           rowKey="id"
           loading={loading}
           pagination={{ pageSize: 8 }}
+          scroll={{ x: 750 }}
         />
       </Card>
 
@@ -280,6 +287,6 @@ export default function Employees() {
           </Form.Item>
         </Form>
       </Modal>
-    </>
+    </main>
   );
 }

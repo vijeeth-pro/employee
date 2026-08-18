@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel
 
 class CompanyPolicyBase(BaseModel):
@@ -14,7 +14,26 @@ class CompanyPolicyCreate(CompanyPolicyBase):
 
 class CompanyPolicyOut(CompanyPolicyBase):
     id: int
+    file_name: Optional[str] = None
+    file_path: Optional[str] = None
+    file_size: Optional[int] = None
+    chunk_count: Optional[int] = 0
     created_at: datetime
 
     class Config:
         from_attributes = True
+
+class SourceChunk(BaseModel):
+    title: str
+    source_type: str
+    chunk_text: str
+    score: float
+
+class ChatQueryRequest(BaseModel):
+    message: str
+
+class ChatQueryResponse(BaseModel):
+    answer: str
+    sources: List[SourceChunk] = []
+    user_context: Optional[dict] = None
+

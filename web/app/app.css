@@ -102,3 +102,39 @@
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
   border: 1px solid #e2e8f0 !important;
 }
+
+/* Responsive Table & Container Adjustments */
+.ant-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Custom Scrollbars for Horizontal Tables */
+.ant-table-body::-webkit-scrollbar,
+.ant-table-wrapper::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.ant-table-body::-webkit-scrollbar-thumb,
+.ant-table-wrapper::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+  .ant-table-wrapper .ant-table-thead > tr > th,
+  .ant-table-wrapper .ant-table-tbody > tr > td {
+    padding: 10px 8px !important;
+    font-size: 12px;
+  }
+  
+  .ant-card-body {
+    padding: 14px !important;
+  }
+
+  .ant-modal-body {
+    padding: 16px !important;
+  }
+}
+

@@ -123,6 +123,24 @@ def init_db():
         db.add_all(policies)
         db.commit()
 
+
+        # Vector Index Seed Policies
+        from app.services.rag_service import chunk_text, upsert_chunks_to_vector_db
+        for pol in policies:
+            db.refresh(pol)
+            chunks = chunk_text(pol.content)
+            pol.chunk_count = len(chunks)
+            upsert_chunks_to_vector_db(
+                doc_id=pol.id,
+                title=pol.title,
+                chunks=chunks,
+                company_id=pol.company_id,
+                vendor_company_id=pol.vendor_company_id,
+                category=pol.category
+            )
+        db.commit()
+
+
         # 4. Create System Users for all 5 roles
         users_to_seed = [
             # Role: Admin
@@ -171,7 +189,13 @@ def init_db():
                 phone="+1 (555) 019-3333",
                 designation="Senior Software Engineer",
                 department="Engineering",
-                status="active"
+                status="active",
+                annual_leave_quota=20,
+                sick_leave_quota=10,
+                annual_leave_taken=3,
+                sick_leave_taken=1,
+                last_leave_date="August 15, 2026",
+                last_leave_type="Casual Leave (1 day taken yesterday)"
             ),
             User(
                 email="sarah.apex@apex.com",

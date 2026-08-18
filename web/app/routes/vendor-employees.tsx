@@ -3,6 +3,7 @@ import { Table, Button, Input, Modal, Form, Select, Tag, Space, Typography, Card
 import { PlusOutlined, SearchOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { api } from "../services/api";
 import { useAuthStore } from "../store/useAuthStore";
+import { SEOHead } from "../components/SEOHead";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -158,11 +159,16 @@ export default function VendorEmployees() {
   ];
 
   return (
-    <>
-      <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+    <main id="main-content">
+      <SEOHead
+        title="Vendor Contractors & Staff"
+        description="Manage external vendor contractors, client allocations, timesheet compliance, and security clearance."
+        canonicalPath="/vendor-employees"
+      />
+      <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
         <div>
-          <Title level={3} style={{ margin: 0 }}>Vendor Employees & Contractors</Title>
-          <span>External vendor staff assigned to enterprise projects</span>
+          <h1>Vendor Employees & Contractors</h1>
+          <span style={{ color: "#64748b", fontSize: 13 }}>External vendor agency contractors and deployed personnel</span>
         </div>
 
         {(user?.role === "admin" || user?.role === "vendor.company") && (
@@ -173,7 +179,7 @@ export default function VendorEmployees() {
       </div>
 
       <Card style={{ borderRadius: 12 }}>
-        <div style={{ marginBottom: 16, maxWidth: 320 }}>
+        <div style={{ marginBottom: 16, maxWidth: 320, width: "100%" }}>
           <Input
             placeholder="Search contractor name, vendor..."
             prefix={<SearchOutlined />}
@@ -183,7 +189,7 @@ export default function VendorEmployees() {
           />
         </div>
 
-        <Table dataSource={filteredData} columns={columns} rowKey="id" loading={loading} pagination={{ pageSize: 8 }} />
+        <Table dataSource={filteredData} columns={columns} rowKey="id" loading={loading} pagination={{ pageSize: 8 }} scroll={{ x: 750 }} />
       </Card>
 
       <Modal
@@ -236,6 +242,6 @@ export default function VendorEmployees() {
           </Form.Item>
         </Form>
       </Modal>
-    </>
+    </main>
   );
 }

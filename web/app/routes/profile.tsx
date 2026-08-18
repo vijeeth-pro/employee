@@ -3,6 +3,7 @@ import { Card, Descriptions, Tag, Typography, Avatar, Row, Col, Form, Input, But
 import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, BankOutlined, SafetyCertificateOutlined } from "@ant-design/icons";
 import { useAuthStore } from "../store/useAuthStore";
 import { api } from "../services/api";
+import { SEOHead } from "../components/SEOHead";
 
 const { Title, Text } = Typography;
 
@@ -34,14 +35,19 @@ export default function Profile() {
   };
 
   return (
-    <>
-      <Title level={3} style={{ marginBottom: 20 }}>User Profile & Settings</Title>
+    <main id="main-content">
+      <SEOHead
+        title="User Profile & Security Settings"
+        description="View your user profile information, role permissions, organization details, and account security settings in Workforce OS."
+        canonicalPath="/profile"
+      />
+      <h1>User Profile & Settings</h1>
 
-      <Row gutter={[24, 24]}>
-        <Col xs={24} md={8}>
+      <Row gutter={[20, 20]}>
+        <Col xs={24} lg={8}>
           <Card style={{ textAlign: "center", borderRadius: 12 }}>
             <Avatar
-              size={96}
+              size={88}
               icon={<UserOutlined />}
               style={{ backgroundColor: "#1677ff", marginBottom: 16 }}
             >
@@ -61,7 +67,7 @@ export default function Profile() {
               <Space direction="vertical" style={{ width: "100%" }} size="middle">
                 <div>
                   <MailOutlined style={{ marginRight: 8, color: "#1677ff" }} />
-                  <span>{user?.email}</span>
+                  <span style={{ wordBreak: "break-all" }}>{user?.email}</span>
                 </div>
                 <div>
                   <PhoneOutlined style={{ marginRight: 8, color: "#52c41a" }} />
@@ -76,7 +82,7 @@ export default function Profile() {
           </Card>
         </Col>
 
-        <Col xs={24} md={16}>
+        <Col xs={24} lg={16}>
           <Card style={{ borderRadius: 12 }}>
             <Tabs
               items={[
@@ -105,7 +111,7 @@ export default function Profile() {
                   key: "security",
                   label: "Security & Password",
                   children: (
-                    <Form form={form} layout="vertical" onFinish={handlePasswordUpdate} style={{ maxWidth: 400, marginTop: 16 }}>
+                    <Form form={form} layout="vertical" onFinish={handlePasswordUpdate} style={{ maxWidth: 400, width: "100%", marginTop: 16 }}>
                       <Form.Item
                         name="password"
                         label="New Password"
@@ -127,6 +133,6 @@ export default function Profile() {
           </Card>
         </Col>
       </Row>
-    </>
+    </main>
   );
 }

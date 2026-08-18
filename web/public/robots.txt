@@ -1,0 +1,12 @@
+# robots.txt for Workforce OS Enterprise Platform
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /docs/
+
+# Disallow API endpoints and private assets
+Disallow: /api/
+Disallow: /uploads/
+
+# Sitemap location
+Sitemap: https://vijeeth.zapto.org/domain/sitemap.xml

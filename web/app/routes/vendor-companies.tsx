@@ -3,6 +3,7 @@ import { Table, Button, Input, Modal, Form, Tag, Space, Typography, Card, messag
 import { PlusOutlined, SearchOutlined, EditOutlined, DeleteOutlined, LinkOutlined } from "@ant-design/icons";
 import { api } from "../services/api";
 import { useAuthStore } from "../store/useAuthStore";
+import { SEOHead } from "../components/SEOHead";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -178,11 +179,16 @@ export default function VendorCompanies() {
   ];
 
   return (
-    <>
-      <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+    <main id="main-content">
+      <SEOHead
+        title="Vendor Staffing Agencies"
+        description="Manage external staffing vendor agencies, IT consulting partners, service offerings, and client company associations."
+        canonicalPath="/vendor-companies"
+      />
+      <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
         <div>
-          <Title level={3} style={{ margin: 0 }}>Vendor Companies</Title>
-          <span>Third-party vendor partners and contractor agencies</span>
+          <h1>Vendor Companies</h1>
+          <span style={{ color: "#64748b", fontSize: 13 }}>Third-party vendor partners and contractor agencies</span>
         </div>
 
         {(user?.role === "admin" || user?.role === "company") && (
@@ -201,7 +207,7 @@ export default function VendorCompanies() {
       </div>
 
       <Card style={{ borderRadius: 12 }}>
-        <div style={{ marginBottom: 16, maxWidth: 320 }}>
+        <div style={{ marginBottom: 16, maxWidth: 320, width: "100%" }}>
           <Input
             placeholder="Search vendor name, code..."
             prefix={<SearchOutlined />}
@@ -211,7 +217,7 @@ export default function VendorCompanies() {
           />
         </div>
 
-        <Table dataSource={filteredData} columns={columns} rowKey="id" loading={loading} pagination={{ pageSize: 8 }} />
+        <Table dataSource={filteredData} columns={columns} rowKey="id" loading={loading} pagination={{ pageSize: 8 }} scroll={{ x: 800 }} />
       </Card>
 
       {/* Vendor Create/Edit Modal */}
@@ -279,6 +285,6 @@ export default function VendorCompanies() {
           </Form.Item>
         </Form>
       </Modal>
-    </>
+    </main>
   );
 }

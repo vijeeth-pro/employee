@@ -9,6 +9,7 @@ export default [
     route("vendor-companies", "routes/vendor-companies.tsx"),
     route("vendor-employees", "routes/vendor-employees.tsx"),
     route("profile", "routes/profile.tsx"),
+    route("policy-management", "routes/policy-management.tsx"),
   ]),
   route("*", "routes/not-found.tsx"),
 ] satisfies RouteConfig;

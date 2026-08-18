@@ -3,6 +3,7 @@ import { Form, Input, Button, Card, Typography, Alert, Space, Tag, Divider, Spin
 import { UserOutlined, LockOutlined, SafetyCertificateOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import { useNavigate, Navigate } from "react-router";
 import { useAuthStore } from "../store/useAuthStore";
+import { SEOHead } from "../components/SEOHead";
 
 const { Title, Text } = Typography;
 
@@ -70,21 +71,26 @@ export default function Login() {
       justifyContent: "center",
       alignItems: "center",
       background: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)",
-      padding: "24px",
+      padding: "16px",
     }}>
+      <SEOHead
+        title="Sign In - Enterprise Portal"
+        description="Access your Workforce OS portal for company employee directory, vendor contractor management, and policy RAG assistant."
+        canonicalPath="/login"
+      />
       <Card
         style={{
           width: "100%",
-          maxWidth: 480,
+          maxWidth: 450,
           borderRadius: 16,
           boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
           border: "1px solid rgba(255,255,255,0.1)",
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <SafetyCertificateOutlined style={{ fontSize: 44, color: "#1677ff" }} />
-          <Title level={3} style={{ marginTop: 12, marginBottom: 4 }}>Workforce OS</Title>
-          <Text type="secondary">Enterprise Employee & Vendor Management Portal</Text>
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <SafetyCertificateOutlined style={{ fontSize: 40, color: "#1677ff" }} />
+          <Title level={3} style={{ marginTop: 8, marginBottom: 4, fontSize: 22 }}>Workforce OS</Title>
+          <Text type="secondary" style={{ fontSize: 13 }}>Enterprise Employee & Vendor Management Portal</Text>
         </div>
 
         {error && (
@@ -116,14 +122,14 @@ export default function Login() {
             <Input.Password prefix={<LockOutlined />} placeholder="Password" />
           </Form.Item>
 
-          <Form.Item>
+          <Form.Item style={{ marginBottom: 12 }}>
             <Button type="primary" htmlType="submit" loading={isFormSubmitting} block size="large" style={{ borderRadius: 8 }}>
               Log In
             </Button>
           </Form.Item>
         </Form>
 
-        <Divider style={{ margin: "16px 0", fontSize: 12, color: "#8c8c8c" }}>
+        <Divider style={{ margin: "14px 0", fontSize: 11, color: "#8c8c8c" }}>
           One-Click Demo Account Quick Login
         </Divider>
 
@@ -137,15 +143,18 @@ export default function Login() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                height: 40,
-                borderRadius: 8
+                height: "auto",
+                minHeight: 38,
+                padding: "6px 12px",
+                borderRadius: 8,
+                whiteSpace: "normal"
               }}
             >
-              <Space>
+              <Space size="small">
                 <CheckCircleOutlined style={{ color: "#52c41a" }} />
-                <span>{acc.title}</span>
+                <span style={{ fontSize: 13, fontWeight: 500 }}>{acc.title}</span>
               </Space>
-              <Tag color={acc.color}>{acc.role}</Tag>
+              <Tag color={acc.color} style={{ margin: 0, fontSize: 11 }}>{acc.role}</Tag>
             </Button>
           ))}
         </Space>
