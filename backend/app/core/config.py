@@ -5,15 +5,15 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Employee & Vendor Management API"
     API_V1_STR: str = "/api/v1"
     
-    # Security Secrets (Strictly loaded from .env)
+    # Security Secrets (Strictly loaded from .env file)
     SECRET_KEY: str
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7 # 7 days
     
-    # Database Connection (Strictly loaded from .env)
+    # Database Connection (Strictly loaded from .env file)
     POSTGRES: str
     
-    # RAG System Configuration (Gemini & Pinecone - Loaded from .env)
+    # RAG System Configuration (Loaded from .env file)
     GEMINI_API_KEY: str = ""
     PINECONE_API_KEY: str = ""
     PINECONE_INDEX_NAME: str = "workforce-policy-index"
