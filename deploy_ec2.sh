@@ -44,11 +44,22 @@ echo "🔄 Seeding / Initializing DB schema..."
 python -m app.db.init_db || true
 
 echo "🔁 Restarting FastAPI Backend Service..."
+UVICORN_BIN=""
+if [ -f ".venv/bin/uvicorn" ]; then
+    UVICORN_BIN=".venv/bin/uvicorn"
+elif [ -f "venv/bin/uvicorn" ]; then
+    UVICORN_BIN="venv/bin/uvicorn"
+else
+    UVICORN_BIN="$(which uvicorn || echo 'uvicorn')"
+fi
+
+echo "Using uvicorn binary: $UVICORN_BIN"
+
 if systemctl is-active --quiet employee-backend; then
     sudo systemctl restart employee-backend
 elif command -v pm2 &> /dev/null; then
     pm2 delete employee-backend 2>/dev/null || true
-    pm2 start .venv/bin/uvicorn --cwd "$(pwd)" --name "employee-backend" -- main:app --host 127.0.0.1 --port 8000 --workers 2
+    pm2 start "$UVICORN_BIN" --cwd "$(pwd)" --name "employee-backend" -- main:app --host 127.0.0.1 --port 8000 --workers 2
     pm2 save 2>/dev/null || true
 else
     echo "⚠️  No systemd service or PM2 detected. Please ensure your backend process manager is running."
