@@ -9,18 +9,18 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Employee & Vendor Management API"
     API_V1_STR: str = "/api/v1"
     
-    # Security Secrets (Loads from system env or .env file with safe fallback)
-    SECRET_KEY: str = os.getenv("SECRET_KEY", "e8391b4028682a8847b744d0ecf4db89694cbe8499252063fb55a1aa80c4ab63")
-    ALGORITHM: str = os.getenv("ALGORITHM", "HS256")
+    # Security Secrets (Strictly loaded from .env file)
+    SECRET_KEY: str
+    ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7 # 7 days
     
-    # Database Connection (Loads from system env or .env file with safe fallback)
-    POSTGRES: str = os.getenv("POSTGRES", "postgresql://postgres:postgres@localhost:5432/employee_db")
+    # Database Connection (Strictly loaded from .env file)
+    POSTGRES: str
     
-    # RAG System Configuration (Loaded from .env file)
-    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
-    PINECONE_API_KEY: str = os.getenv("PINECONE_API_KEY", "")
-    PINECONE_INDEX_NAME: str = os.getenv("PINECONE_INDEX_NAME", "workforce-policy-index")
+    # RAG System Configuration (Strictly loaded from .env file)
+    GEMINI_API_KEY: str = ""
+    PINECONE_API_KEY: str = ""
+    PINECONE_INDEX_NAME: str = "workforce-policy-index"
 
     model_config = SettingsConfigDict(
         env_file=ENV_FILE_PATH if os.path.exists(ENV_FILE_PATH) else ".env",
